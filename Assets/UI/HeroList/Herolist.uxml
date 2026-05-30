@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+<Style src="HeroList.uss"/>
+    <ui:VisualElement class="hero-item-container">
+        <!-- Icon Tướng -->
+        <ui:VisualElement name="hero-icon" class="hero-icon" />
+        
+        <!-- Thông tin giữa: Tên và Giá -->
+        <ui:VisualElement class="hero-info-center">
+            <ui:Label name="hero-name" text="NECROMANCER" class="hero-name-label" />
+            <ui:VisualElement class="hero-cost-row">
+                <ui:VisualElement class="gold-icon" />
+                <ui:Label name="hero-cost" text="2,000" class="hero-cost-label" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- Icon kỹ năng bên phải -->
+        <ui:VisualElement name="skill-icon" class="hero-skill-icon" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -6,6 +6,7 @@ public abstract class BaseUnit : MonoBehaviour
     [Header("Data & Config")]
     public UnitData data;
     public LayerMask enemyLayer;
+    public TeamType Team;
 
     // --- CÁC HỆ THỐNG CON (Composition) ---
     public HealthSystem Health { get; private set; }
@@ -14,6 +15,7 @@ public abstract class BaseUnit : MonoBehaviour
     public AttackSystem Attack { get; protected set; }
     public StateMachine StateMachine { get; private set; }
     public UnitBrain Brain { get; private set; }
+    public IUnitAnimator Anim { get; private set; }
 
     [Header("Runtime Stats")]
     public UnitStats stats;
@@ -24,7 +26,7 @@ public abstract class BaseUnit : MonoBehaviour
         // 1. Khởi tạo dữ liệu
         stats = new UnitStats(data);
         currentState = UnitState.Idle;
-
+        Anim = GetComponentInChildren<IUnitAnimator>();
         // 2. Khởi tạo các hệ thống con
         Health = new HealthSystem(this, stats.currentHP);
         MoveSystem = new MovementSystem(this);
@@ -37,7 +39,7 @@ public abstract class BaseUnit : MonoBehaviour
 
         Brain = new UnitBrain(this);
 
-        Attack = new AttackSystem(this, new MeleeStrategy());
+       // Attack = new AttackSystem(this, new MeleeStrategy(),Anim);
         // 3. Đăng ký sự kiện (Observer Pattern)
         Health.OnDeath += HandleDeath;
     }
@@ -45,18 +47,34 @@ public abstract class BaseUnit : MonoBehaviour
     protected virtual void Update()
     {
         if (Health.IsDead) return;
-        Targeting.UpdateTick();
-        if (Targeting == null)
+        
+        
+        if (GameManager.Instance != null && GameManager.Instance.IsPlaying)
         {
-            Debug.LogError($"[LỖI] Targeting của {gameObject.name} đang bị NULL!");
-            return;
+            Targeting.UpdateTick();
+            
+            Brain?.Think();
         }
-        Brain?.Think();
+        else
+        {
+            // Nếu đang Prepare hoặc Pause, ép lính về trạng thái Idle (Đứng im)
+            currentState = UnitState.Idle;
+            // (Tuỳ vào cách bạn viết hàm ChangeState, có thể bạn truyền Enum hoặc Type vào đây)
+        }
+
+        // Vẫn luôn chạy StateMachine để lính có thể thực hiện các hành động thụ động 
+        // (như chạy Animation đứng thở trong lúc chờ đợi)
+        StateMachine?.Update();
+
 
         
-        StateMachine?.Update();
         
         HandleStateMachine();
+    }
+    protected virtual void Start()
+    {
+        // 3. Thông báo TOÀN CỤC: Tôi vừa ra sân
+        GlobalEventBus.OnUnitSpawned?.Invoke(this);
     }
 
     private void HandleStateMachine()
@@ -94,9 +112,18 @@ public abstract class BaseUnit : MonoBehaviour
 
     protected virtual void HandleDeath()
     {
-        // Logic chung khi bất kỳ đơn vị nào chết (chạy hiệu ứng, xóa Object)
-        Debug.Log($"{gameObject.name} đã chết.");
+        // 4. Thông báo TOÀN CỤC: Tôi đã chết, các Manager hãy cập nhật List
+        GlobalEventBus.OnUnitDied?.Invoke(this);
+
         Destroy(gameObject);
+    }
+    protected virtual void OnDestroy()
+    {
+        // Hủy lắng nghe nội bộ để dọn dẹp bộ nhớ
+        if (Health != null)
+        {
+            Health.OnDeath -= HandleDeath;
+        }
     }
 
     // [STRATEGY PATTERN] Cho phép thay đổi "não" tìm mục tiêu bất cứ lúc nào

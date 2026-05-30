@@ -12,14 +12,15 @@ public class SimpleSoldier : BaseUnit
         Targeting = new TargetingSystem(this, new ClosestTargetStrategy());
 
         // 2. Lắp vũ khí: Đánh cận chiến đơn mục tiêu
-        Attack = new AttackSystem(this, new MeleeStrategy());
+        Attack = new AttackSystem(this, new MeleeStrategy(),Anim);
 
         // 3. Đăng ký Observer: Khi đánh thì chạy Animation và Log
         Attack.OnAttackPerformed += HandleAttackVisuals;
     }
 
-    private void Start()
-    {
+    protected override void Start()
+    {   
+        base.Start();
         // Bắt đầu ở trạng thái đứng đợi
         StateMachine.ChangeState(new IdleState(this));
     }

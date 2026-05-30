@@ -1,0 +1,19 @@
+﻿.unit-icon {
+    width: 80px;
+    height: 80px;
+    background-color: #3b3b3b;
+    margin: 5px;
+    border-width: 2px;
+    border-color: #ffffff;
+    border-radius: 5px;
+    transition-duration: 0.1s;
+}
+
+.unit-icon:hover {
+    background-color: #555555;
+    scale: 1.1;
+}
+
+/* Bạn có thể thêm hình ảnh cho từng loại quân ở đây */
+/* #Archer { background-image: url('project:/Assets/Sprites/ArcherIcon.png'); }
+#Warrior { background-image: url('project:/Assets/Sprites/WarriorIcon.png'); } */

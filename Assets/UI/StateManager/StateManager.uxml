@@ -1,0 +1,79 @@
+<ui:UXML
+    xmlns:ui="UnityEngine.UIElements"
+    editor-extension-mode="False">
+    
+
+    <!-- ========================= -->
+    <!-- Templates -->
+    <!-- ========================= -->
+
+    <ui:Template
+        name="PreparePanelTemplate"
+        src="project://database/Assets/Scripts/GridSystem/UI/PreparePanel.uxml#PreparePanel" />
+
+    <ui:Template
+        name="PlayingPanelTemplate"
+        src="project://database/Assets/UI/StateManager/PlayingPanel.uxml#PlayingPanel" />
+        
+    <ui:Template
+        name="PausePanelTemplate"
+        src="project://database/Assets/UI/StateManager/PausePanel.uxml#PausePanel" />
+
+    <!-- ========================= -->
+    <!-- USS -->
+    <!-- ========================= -->
+
+    <Style
+        src="project://database/Assets/UI/StateManager/StateUss.uss#UIManager" />
+
+    <!-- ========================= -->
+    <!-- Root -->
+    <!-- ========================= -->
+
+    <ui:VisualElement
+        name="root"
+        class="full-screen">
+
+        <!-- ========================= -->
+        <!-- Prepare -->
+        <!-- ========================= -->
+
+        <ui:VisualElement
+            name="PreparePanelElement"
+            class="full-screen ">
+
+            <ui:Instance
+                template="PreparePanelTemplate" 
+                class="full-screen"/>
+
+        </ui:VisualElement>
+
+        <!-- ========================= -->
+        <!-- Playing -->
+        <!-- ========================= -->
+
+        <ui:VisualElement
+            name="PlayingPanelElement"
+            class="full-screen hidden">
+
+            <ui:Instance
+                template="PlayingPanelTemplate" />
+
+        </ui:VisualElement>
+
+        <!-- ========================= -->
+        <!-- Pause -->
+        <!-- ========================= -->
+
+        <ui:VisualElement
+            name="PausePanelElement"
+            class="full-screen hidden">
+
+            <ui:Instance
+                template="PausePanelTemplate" />
+
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+
+</ui:UXML>

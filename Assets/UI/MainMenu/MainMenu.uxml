@@ -1,0 +1,26 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MainMenu/MainMenu.uss?fileID=7433441132597879392&amp;guid=b95d41adcfd973b40b1cb6693510595b&amp;type=3#MainMenu"/>
+    <ui:VisualElement name="root">
+        <ui:VisualElement name="top-bar">
+            <ui:VisualElement name="top-left-spacer"/>
+            <ui:VisualElement name="currency-container">
+                <ui:Image name="cash-icon" class="icon"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="spacer" style="flex-grow: 1;"/>
+            <ui:Button name="settings-btn" class="icon-btn-no-border">
+                <ui:Image name="settings-icon" class="icon"/>
+            </ui:Button>
+        </ui:VisualElement>
+        <ui:VisualElement name="bottom-container" style="bottom: auto;">
+            <ui:Button name="shop-bag-btn" class="menu-btn">
+                <ui:Image class="icon"/>
+            </ui:Button>
+            <ui:Button name="cart-btn" class="menu-btn">
+                <ui:Image class="icon"/>
+            </ui:Button>
+            <ui:Button name="target-btn" class="menu-btn">
+                <ui:Image class="icon"/>
+            </ui:Button>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

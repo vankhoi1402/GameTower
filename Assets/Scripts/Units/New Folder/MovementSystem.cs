@@ -4,36 +4,46 @@ public class MovementSystem
 {
     private BaseUnit _owner;
     private SpriteRenderer _spriteRenderer;
-    private Animator _animator;
+    
 
-    // Lưu hash của Parameter để tối ưu hiệu suất thay vì dùng string
-    private static readonly int IsMovingHash = Animator.StringToHash("IsMoving");
+    // --- CẤU HÌNH TÁCH BẦY (Chuyển từ State sang đây) ---
+    private float _separationRadius = 1.0f;
+    private float _separationWeight = 1.5f;
+    private Collider2D[] _neighbors = new Collider2D[10];
 
     public MovementSystem(BaseUnit owner)
     {
         _owner = owner;
         _spriteRenderer = owner.GetComponentInChildren<SpriteRenderer>();
-        _animator = owner.GetComponentInChildren<Animator>();
+        
     }
 
-    // Hàm di chuyển chính - Sẽ được gọi trong MoveState.OnUpdate()
-    public void MoveTo(Vector2 targetPos, float speed)
+    // Hàm MoveTo nhận tọa độ đích, TỰ ĐỘNG tính toán việc né đồng đội
+    public void MoveTo(Vector3 targetPos, float speed)
     {
-        // 1. Tính toán hướng di chuyển
-        Vector2 currentPos = _owner.transform.position;
-        _owner.transform.position = Vector2.MoveTowards(currentPos, targetPos, speed * Time.deltaTime);
+        Vector3 currentPos = _owner.transform.position;
 
-        // 2. Lật Sprite dựa trên hướng x
-        HandleFlip(targetPos.x - currentPos.x);
+        // 1. Tính hướng đi thẳng tới mục tiêu
+        Vector3 directionToTarget = (targetPos - currentPos).normalized;
 
-        // 3. Cập nhật Animation
-        UpdateAnimation(true);
+        // 2. Tính lực né đồng đội
+        Vector3 separationDirection = CalculateSeparation(currentPos);
+
+        // 3. Tổng hợp hướng đi cuối cùng
+        Vector3 finalDirection = (directionToTarget + (separationDirection * _separationWeight)).normalized;
+
+        // 4. Thực thi di chuyển bằng Transform
+        _owner.transform.position += finalDirection * (speed * Time.deltaTime);
+
+        // 5. Cập nhật hình ảnh & Hoạt họa
+        HandleFlip(finalDirection.x);
+
+      
     }
 
-    // Hàm dừng lại - Sẽ được gọi trong IdleState.OnEnter() hoặc AttackState.OnEnter()
     public void Stop()
     {
-        UpdateAnimation(false);
+        
     }
 
     private void HandleFlip(float horizontalDirection)
@@ -42,11 +52,43 @@ public class MovementSystem
         else if (horizontalDirection < -0.01f) _spriteRenderer.flipX = true;
     }
 
-    private void UpdateAnimation(bool isMoving)
+    // --- HÀM TÍNH TOÁN LỰC ĐẨY KÍN BÊN TRONG ---
+    private Vector3 CalculateSeparation(Vector3 currentPos)
     {
-        if (_animator != null)
+        Vector3 separationMove = Vector3.zero;
+        int neighborCount = 0;
+
+        // 1. Tạo một bộ lọc (Filter) cơ bản. NoFilter() nghĩa là quét mọi thứ.
+        // (Sau này bạn có thể tối ưu thêm bằng cách thiết lập filter.SetLayerMask để chỉ quét trúng layer "Quân lính")
+        ContactFilter2D filter = ContactFilter2D.noFilter;
+
+        // 2. Dùng hàm OverlapCircle kiểu mới: Truyền thêm filter và mảng _neighbors vào
+        // Vì bạn truyền mảng _neighbors vào, Unity tự hiểu đây là cách quét "NonAlloc" (Không sinh rác bộ nhớ)
+        int hitCount = Physics2D.OverlapCircle((Vector2)currentPos, _separationRadius, filter, _neighbors);
+
+        // Đoạn dưới này giữ nguyên 100% không cần đổi
+        for (int i = 0; i < hitCount; i++)
         {
-            _animator.SetBool(IsMovingHash, isMoving);
+            Collider2D neighbor = _neighbors[i];
+
+            if (neighbor.gameObject != _owner.gameObject)
+            {
+                Vector3 awayFromNeighbor = currentPos - neighbor.transform.position;
+                float distance = awayFromNeighbor.magnitude;
+
+                if (distance > 0 && distance < _separationRadius)
+                {
+                    separationMove += awayFromNeighbor.normalized / distance;
+                    neighborCount++;
+                }
+            }
         }
+
+        if (neighborCount > 0)
+        {
+            separationMove /= neighborCount;
+        }
+
+        return separationMove;
     }
 }

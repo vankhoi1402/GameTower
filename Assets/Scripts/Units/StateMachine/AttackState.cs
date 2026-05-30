@@ -22,7 +22,7 @@ public class AttackState : IState
         BaseUnit target = _unit.Targeting.CurrentTarget;
 
         // 2. Quay mặt về phía mục tiêu (Xử lý Flip Sprite)
-        LookAtTarget(target);
+       // LookAtTarget(target);
 
         // 3. Thực hiện tấn công thông qua hệ thống AttackSystem
         // Hệ thống này sẽ tự quản lý Cooldown (tốc độ đánh) cho bạn

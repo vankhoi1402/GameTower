@@ -5,7 +5,10 @@ public class IdleState :  IState
     private BaseUnit _unit;
     public IdleState(BaseUnit unit) => _unit = unit;
 
-    public void OnEnter() => Debug.Log("IDLE: Bắt đầu đứng nghỉ");
+    public void OnEnter() {
+        // Debug.Log("IDLE: Bắt đầu đứng nghỉ"); 
+       // _unit.Anim.Play(UnitAnimState.Idle);
+    }
 
     public void OnUpdate()
     {

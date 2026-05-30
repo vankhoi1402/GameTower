@@ -1,49 +1,79 @@
 ﻿using System;
 using UnityEngine;
 
-public class AttackSystem 
+public class AttackSystem
 {
     private BaseUnit _owner;
     private IAttackStrategy _strategy;
+    private IUnitAnimator _anim; // 1. Kết hợp hộp đen Animation vào đây
+
+    // Biến tạm để ghi nhớ mục tiêu trong lúc chờ Animation vung kiếm đến frame gây sát thương
+    private BaseUnit _currentTarget;
 
     // --- [OBSERVER] ---
-    // Phát tín hiệu khi đòn đánh thực sự xảy ra để VFX/SFX/UI lắng nghe
     public event Action<BaseUnit, float> OnAttackPerformed;
 
-    public AttackSystem(BaseUnit owner, IAttackStrategy initialStrategy)
+    public AttackSystem(BaseUnit owner, IAttackStrategy initialStrategy, IUnitAnimator anim)
     {
         _owner = owner;
         _strategy = initialStrategy;
+        _anim = anim;
+
+        // 2. Đăng ký nghe sự kiện "khung hình hành động" từ hộp đen Animation
+        if (_anim != null)
+        {
+            _anim.OnActionTriggered += HandleDamageFrame;
+        }
     }
 
-    // Cho phép đổi chiến thuật lúc đang chơi (Ví dụ nhặt được buff)
+    // Nhớ gọi hàm này khi Unit bị hủy để tránh rò rỉ bộ nhớ
+    public void Cleanup()
+    {
+        if (_anim != null)
+        {
+            _anim.OnActionTriggered -= HandleDamageFrame;
+        }
+    }
+
     public void SetStrategy(IAttackStrategy newStrategy) => _strategy = newStrategy;
 
     public void Update()
     {
-        // Cập nhật cooldown từ Stats (đã viết ở các bước trước)
         _owner.stats.UpdateAttackTimer();
     }
 
     public void TryExecuteAttack(BaseUnit target)
     {
+        if (target == null || target.Health.IsDead) return;
 
-        if (target == null || target.Health.IsDead) {
-            
-        }
-        Debug.Log(_owner.stats.IsAttackReady());
         // Kiểm tra xem đã đến lúc được đánh chưa
         if (_owner.stats.IsAttackReady())
         {
-            // 1. Thực thi logic gây dame (Strategy)
-             _strategy.ExecuteAttack(_owner, target, _owner.stats.currentDamage);
-                Debug.Log(" danh nhau ");
-            // 2. Phát tín hiệu cho các bên liên quan
-            OnAttackPerformed?.Invoke(target, _owner.stats.currentDamage);
+            // Bước A: Ghi nhớ mục tiêu hiện tại
+            _currentTarget = target;
 
-            // 3. Reset thời gian chờ
+            // Bước B: PHÁT ANIMATION TẠI ĐÂY (Bắn và quên)
+            // Khóa hoạt họa lại để không bị các trạng thái như chạy bộ đè lên giữa chừng
+            _anim.Play(UnitAnimState.Attack, lockAnim: true, forceReplay: true);
+           // _strategy.ExecuteAttack(_owner, _currentTarget, _owner.stats.currentDamage);
+
+            // Bước C: Reset thời gian chờ lập tức
             _owner.stats.UpdateAttackTimer();
-            
+        }
+    }
+
+    // --- NƠI THỰC SỰ GÂY SÁT THƯƠNG ---
+    // Hàm này sẽ tự động kích hoạt khi Clip Animation chạy đến đúng Frame chém trúng/buông cung
+    private void HandleDamageFrame()
+    {
+        // Kiểm tra lại xem trong lúc vung kiếm thì mục tiêu có bị đồng đội khác đánh chết trước chưa
+        if (_currentTarget != null && !_currentTarget.Health.IsDead)
+        {
+            // 1. Thực thi logic gây dame (Strategy) ĐÚNG NHỊP HÌNH ẢNH
+            _strategy.ExecuteAttack(_owner, _currentTarget, _owner.stats.currentDamage);
+
+            // 2. Phát tín hiệu cho VFX/SFX/UI nổ hiệu ứng đúng vị trí
+            OnAttackPerformed?.Invoke(_currentTarget, _owner.stats.currentDamage);
         }
     }
 }

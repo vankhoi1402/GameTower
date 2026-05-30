@@ -1,0 +1,55 @@
+﻿.hero-item-container {
+    flex-direction: row;
+    background-color: #3d3428; /* Màu nền tối */
+    border-color: #b59b6d;     /* Màu viền vàng nhạt */
+    border-width: 3px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 5px;
+    align-items: center;
+    height: 80px;
+}
+
+.hero-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #222;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.hero-info-center {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.hero-name-label {
+    color: white;
+    -unity-font-style: bold;
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.hero-cost-row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.gold-icon {
+    width: 16px;
+    height: 16px;
+    background-color: #ffd700; /* Thay bằng sprite icon vàng của bạn */
+    border-radius: 8px;
+    margin-right: 5px;
+}
+
+.hero-cost-label {
+    color: #ffd700;
+    font-size: 14px;
+}
+
+.hero-skill-icon {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+}
