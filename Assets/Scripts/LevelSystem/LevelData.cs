@@ -12,6 +12,7 @@ public struct EnemyGridConfig
 public class LevelData : ScriptableObject
 {
     public string levelName;
+    public string sceneToLoad;
     public int maxPlacementCapacity = 10;
     public List<EnemyGridConfig> enemyTroopsSetup;
 }

@@ -1,0 +1,42 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/LoadLevel/LevelMenu.uss" />
+    <ui:VisualElement class="screen-root">
+        
+        <ui:VisualElement class="header-panel">
+            <ui:Label text="TOWER DEFENSE" class="game-title" />
+            <ui:Label text="TACTICS" class="game-subtitle" />
+            <ui:VisualElement class="header-buttons">
+                <ui:Button text="SETTINGS" class="top-btn" name="BtnSettings" />
+                <ui:Button text="BACK X" class="top-btn back-btn" name="BtnBack" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement class="main-body">
+            
+            <ui:VisualElement class="sidebar-left">
+                <ui:Label text="CÁC VÙNG ĐẤT" class="section-title" />
+                <ui:ScrollView name="ChapterContainer" class="chapter-scroll-view" no-scrollbar="true" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="content-right">
+                <ui:Label name="TxtCurrentChapterTitle" text="RỪNG SÂU - LEVEL SELECT" class="section-title" />
+                
+                <ui:ScrollView name="LevelGridContainer" class="level-grid-scroll" />
+
+                <ui:VisualElement class="bottom-bar">
+                    <ui:VisualElement name="RewardPanel" class="reward-box">
+                        <ui:VisualElement name="ImgRewardIcon" class="reward-icon" />
+                        <ui:VisualElement class="reward-text-group">
+                            <ui:Label text="PHẦN THƯỞNG KHI HOÀN THÀNH KHU VỰC" class="reward-header" />
+                            <ui:Label text="Mở khóa đơn vị mới:" class="reward-sub" />
+                            <ui:Label name="TxtRewardName" text="ARCHER" class="reward-title" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    
+                    <ui:Button text="PLAY" name="BtnPlay" class="btn-play" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

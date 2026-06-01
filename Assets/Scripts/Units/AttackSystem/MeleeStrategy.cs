@@ -6,6 +6,6 @@ public class MeleeStrategy : IAttackStrategy
     {
         // Gây sát th??ng tr?c ti?p lên Health c?a m?c tiêu
         target.Health.TakeDamage(damage);
-        Debug.Log($"[Melee] {owner.name} chém {target.name}");
+        //Debug.Log($"[Melee] {owner.name} chém {target.name}");
     }
 }

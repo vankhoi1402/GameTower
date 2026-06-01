@@ -13,6 +13,7 @@ public class BattleManager : MonoBehaviour
 
     private bool _isCombatActive = false;
     private bool _isMatchOver = false;
+    public MatchResult LastMatchResult { get; private set; } // THÊM DÒNG NÀY
 
     private void Awake()
     {
@@ -68,6 +69,7 @@ public class BattleManager : MonoBehaviour
     {
         _isMatchOver = true;
         _isCombatActive = false;
+        LastMatchResult = result;
         GlobalEventBus.OnMatchEnded?.Invoke(result);
     }
 
@@ -77,5 +79,6 @@ public class BattleManager : MonoBehaviour
         _enemyUnits.Clear();
         _isCombatActive = false;
         _isMatchOver = false;
+        LastMatchResult = MatchResult.Defeat;
     }
 }

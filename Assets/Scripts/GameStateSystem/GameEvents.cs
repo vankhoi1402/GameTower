@@ -44,7 +44,8 @@ public enum GameState
 {
     Prepare,
     Playing,
-    Paused
+    Paused,
+    EndGame
 }
 
 

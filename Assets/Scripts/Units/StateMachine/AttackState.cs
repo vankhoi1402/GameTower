@@ -11,7 +11,7 @@ public class AttackState : IState
 
     public void OnEnter()
     {
-        Debug.Log($"<color=red>[Attack]</color> {_unit.data.unitName} vào thế chiến đấu!");
+       // Debug.Log($"<color=red>[Attack]</color> {_unit.data.unitName} vào thế chiến đấu!");
     }
 
     public void OnUpdate()
@@ -31,7 +31,7 @@ public class AttackState : IState
 
     public void OnExit()
     {
-        Debug.Log($"<color=red>[Attack]</color> {_unit.data.unitName} ngừng tấn công.");
+       // Debug.Log($"<color=red>[Attack]</color> {_unit.data.unitName} ngừng tấn công.");
     }
 
     private void LookAtTarget(BaseUnit target)

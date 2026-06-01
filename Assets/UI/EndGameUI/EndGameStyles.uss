@@ -1,0 +1,85 @@
+﻿/* Phủ toàn màn hình, căn giữa mọi thứ bên trong */
+.full-screen-overlay {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0.75);
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Bảng End Game chính - Tinh chỉnh lại padding cho gọn */
+.main-panel {
+    background-color: rgb(22, 38, 59);
+    border-radius: 20px;
+    border-width: 3px;
+    border-color: rgb(113, 146, 179);
+    width: 600px; /* Thu hẹp chiều ngang một chút cho cân đối */
+    padding: 40px 30px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Header */
+.header-section {
+    width: 100%;
+    background-color: rgb(45, 87, 128);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 50px; /* Tăng khoảng cách xuống nút bấm */
+    align-items: center;
+}
+
+.result-title {
+    font-size: 65px;
+    -unity-font-style: bold;
+    color: rgb(255, 223, 0);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    margin: 0;
+    padding: 0;
+}
+
+/* Buttons Section */
+.buttons-section {
+    align-items: center;
+    width: 100%;
+}
+
+/* Nút Continue */
+.btn-primary {
+    font-size: 32px;
+    -unity-font-style: bold;
+    color: white;
+    background-color: rgb(55, 179, 196);
+    border-radius: 15px;
+    border-width: 2px;
+    border-color: white;
+    width: 350px;
+    height: 80px;
+    margin-bottom: 20px;
+    transition-duration: 0.15s;
+}
+
+.btn-primary:hover {
+    scale: 1.05;
+    background-color: rgb(65, 200, 220);
+}
+
+/* Nút Về Menu */
+.btn-secondary {
+    font-size: 22px;
+    color: rgb(200, 200, 200);
+    background-color: rgb(28, 48, 77);
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: rgb(100, 100, 100);
+    width: 200px;
+    height: 55px;
+    transition-duration: 0.15s;
+}
+
+.btn-secondary:hover {
+    scale: 1.05;
+    color: white;
+    background-color: rgb(38, 68, 107);
+}

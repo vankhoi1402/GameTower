@@ -17,5 +17,7 @@ public class IdleState :  IState
         //    _unit.StateMachine.ChangeState(new MoveState(_unit));
     }
 
-    public void OnExit() => Debug.Log("IDLE: Thôi đứng nghỉ, đi làm việc đây");
+    public void OnExit() {
+        //Debug.Log("IDLE: Thôi đứng nghỉ, đi làm việc đây")
+          }
 }

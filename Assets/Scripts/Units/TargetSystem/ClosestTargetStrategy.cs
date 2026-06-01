@@ -37,7 +37,7 @@ public class ClosestTargetStrategy : ITargetSearchStrategy
        // Debug.Log(Có thể bật lên để test, nhưng nên tắt khi build game để tối ưu)
          if (bestTarget != null)
         {
-            Debug.Log($"<color=green>[Targeting]</color> {owner.name} đã chọn: {bestTarget.name} (Cách {closestDistance:F2}m)");
+           // Debug.Log($"<color=green>[Targeting]</color> {owner.name} đã chọn: {bestTarget.name} (Cách {closestDistance:F2}m)");
         }
 
         return bestTarget;

@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="EndGameStyles.uss" />
+
+    <ui:VisualElement name="EndGamePanelElement" class="full-screen-overlay">
+        
+        <ui:VisualElement class="main-panel">
+            
+            <ui:VisualElement class="header-section">
+                <ui:Label name="ResultLabel" text="VICTORY" class="result-title" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="buttons-section">
+                <ui:Button name="ContinueButton" text="CONTINUE" class="btn-primary" />
+                <ui:Button name="ReturnButton" text="MAIN MENU" class="btn-secondary" />
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

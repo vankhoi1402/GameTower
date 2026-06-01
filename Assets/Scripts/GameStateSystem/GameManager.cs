@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public readonly PlayingState PlayingState = new PlayingState();
     public readonly PauseState PauseState = new PauseState();
     public readonly PrepareState PrepareState = new PrepareState();
-
+    public readonly GameOverState gameOverState = new GameOverState();
     private void Awake()
     {
         // Khởi tạo Singleton
@@ -61,18 +61,20 @@ public class GameManager : MonoBehaviour
             case GameState.Prepare:
                 SwitchState(PrepareState);
                 break;
+            case GameState.EndGame: // (Hoặc GameState.GameOver tùy thuộc vào Enum của bạn)
+                if (currentState != gameOverState) SwitchState(gameOverState);
+                break;
         }
     }
 
     // Hàm lõi xử lý chuyển đổi giữa các State Class
     private void SwitchState(GameBaseState nextState)
     {
-        if (currentState != null)
-        {
-            currentState.ExitState(this);
-        }
+        string oldStateName = currentState != null ? currentState.GetType().Name : "NULL";
+        if (currentState != null) { currentState.ExitState(this); }
 
         currentState = nextState;
+        Debug.Log($"<color=cyan>[GameManager]</color> 🔄 ĐÃ CHUYỂN STATE: từ <b>{oldStateName}</b> ➔ <b>{nextState.GetType().Name}</b>");
         currentState.EnterState(this);
     }
 }

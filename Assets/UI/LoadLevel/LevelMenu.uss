@@ -1,0 +1,249 @@
+﻿/* Tổng thể màn hình */
+.screen-root {
+    width: 100%;
+    height: 100%;
+    background-color: #050d12;
+    padding: 20px;
+    font-family: System.Uri;
+    color: #ffffff;
+    justify-content: flex-start;
+}
+
+/* Header */
+.header-panel {
+    height: 60px;
+    flex-direction: row;
+    align-items: center;
+    border-bottom-width: 1px;
+    border-color: #142834;
+    margin-bottom: 15px;
+}
+.game-title {
+    font-size: 24px;
+    -unity-font-style: bold;
+    color: #ffffff;
+}
+.game-subtitle {
+    font-size: 20px;
+    color: #00ccff;
+    margin-left: 10px;
+    -unity-font-style: bold;
+}
+.header-buttons {
+    flex-direction: row;
+    margin-left: auto;
+}
+.top-btn {
+    background-color: #16242f;
+    border-width: 1px;
+    border-color: #34495e;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 6px;
+    margin-left: 10px;
+}
+
+/* Thân Menu */
+.main-body {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+/* SIDEBAR TRÁI */
+.sidebar-left {
+    width: 320px;
+    background-color: #09131a;
+    border-width: 1px;
+    border-color: #11232e;
+    border-radius: 10px;
+    padding: 15px;
+    margin-right: 20px;
+}
+.section-title {
+    font-size: 22px;
+    -unity-font-style: bold;
+    margin-bottom: 15px;
+    color: #e2e8f0;
+    letter-spacing: 1px;
+}
+.chapter-scroll-view {
+    flex-grow: 1;
+}
+
+/* ITEM CARD CHAPTER (Được sinh tự động từ C#) */
+.chapter-card {
+    flex-direction: row;
+    background-color: #101c24;
+    border-width: 1px;
+    border-color: #1b2f3d;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease-in-out;
+}
+.chapter-card:hover {
+    border-color: #2ecc71;
+    background-color: #142733;
+}
+.chapter-card--selected {
+    border-color: #2ecc71;
+    background-color: #122c25;
+    /* Hiệu ứng bóng sáng neon xanh */
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+}
+.chapter-card--locked {
+    opacity: 0.5;
+    background-color: #0b1217;
+    border-color: #151e24;
+}
+.chapter-icon {
+    width: 45px;
+    height: 45px;
+    margin-right: 12px;
+    align-self: center;
+}
+.chapter-info-holder {
+    flex-grow: 1;
+    justify-content: center;
+}
+.chapter-name {
+    font-size: 16px;
+    -unity-font-style: bold;
+    color: #ffffff;
+}
+.chapter-desc {
+    font-size: 11px;
+    color: #7f8c8d;
+}
+.chapter-progress {
+    font-size: 12px;
+    color: #2ecc71;
+    margin-top: 4px;
+}
+
+/* CONTENT PHẢI (LEVEL SELECT) */
+.content-right {
+    flex-grow: 1;
+    background-color: #09131a;
+    border-width: 1px;
+    border-color: #11232e;
+    border-radius: 10px;
+    padding: 25px;
+    justify-content: space-between;
+}
+
+/* Tự động biến ScrollView Content của Level thành Grid */
+.level-grid-scroll #unity-content-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+/* ITEM CELL LEVEL (Được sinh tự động từ C#) */
+.level-cell {
+    width: 115px;
+    height: 115px;
+    background-color: #13222d;
+    border-width: 1px;
+    border-color: #1e3546;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+    transition: scale 0.15s ease;
+}
+.level-cell:hover {
+    scale: 1.05;
+    border-color: #00ccff;
+}
+.level-num-txt {
+    font-size: 26px;
+    -unity-font-style: bold;
+    color: #ffffff;
+}
+.level-status-txt {
+    font-size: 12px;
+    -unity-font-style: bold;
+    color: #95a5a6;
+}
+/* Trạng thái Level chiến thắng */
+.level-cell--victory {
+    border-color: #2ecc71;
+    background-color: #122b20;
+}
+.level-cell--victory .level-status-txt {
+    color: #2ecc71;
+}
+/* Trạng thái Level bị khóa */
+.level-cell--locked {
+    background-color: #0d161c;
+    border-color: #15222b;
+    opacity: 0.4;
+}
+/* Trạng thái Màn được chọn để bấm Play */
+.level-cell--selected {
+    border-color: #00ccff;
+    background-color: #0e2d3e;
+    box-shadow: 0 0 8px #00ccff;
+}
+
+/* Footer Bottom Area */
+.bottom-bar {
+    height: 90px;
+    flex-direction: row;
+    margin-top: 15px;
+}
+.reward-box {
+    flex-grow: 1;
+    background-color: #0d1b24;
+    border-width: 1px;
+    border-color: #1a3344;
+    border-radius: 8px;
+    padding: 10px;
+    flex-direction: row;
+}
+.reward-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #162a37;
+    border-radius: 6px;
+    margin-right: 15px;
+    align-self: center;
+}
+.reward-text-group {
+    justify-content: center;
+}
+.reward-header {
+    font-size: 11px;
+    color: #7f8c8d;
+}
+.reward-sub {
+    font-size: 13px;
+    color: #ffffff;
+}
+.reward-title {
+    font-size: 16px;
+    -unity-font-style: bold;
+    color: #2ecc71;
+}
+
+/* Nút Play siêu to khổng lồ */
+.btn-play {
+    width: 180px;
+    background-color: #27ae60;
+    border-width: 0;
+    border-radius: 8px;
+    color: white;
+    font-size: 26px;
+    -unity-font-style: bold;
+    margin-left: 20px;
+    transition: background-color 0.2s ease;
+}
+.btn-play:hover {
+    background-color: #2ecc71;
+}
+.btn-play:disabled {
+    background-color: #34495e;
+    opacity: 0.5;
+}

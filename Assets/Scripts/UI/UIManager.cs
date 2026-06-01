@@ -26,7 +26,8 @@ public class UIManager : MonoBehaviour
         {
             { UIPanelType.Prepare, new PreparePanel(root, this, "PreparePanelElement") },
             { UIPanelType.Playing, new PlayingPanel(root, this, "PlayingPanelElement") },
-            { UIPanelType.Paused,  new PausePanel(root, this, "PausePanelElement") }
+            { UIPanelType.Paused,  new PausePanel(root, this, "PausePanelElement") },
+            { UIPanelType.EndGame, new EndGamePanel(root, this, "EndGamePanelElement") }
         };
 
         // QUAN TRỌNG: Ép UI hiển thị trạng thái ban đầu để gán _currentPanel 
@@ -48,6 +49,9 @@ public class UIManager : MonoBehaviour
                 break;
             case GameState.Paused:
                 Show(UIPanelType.Paused);
+                break;
+            case GameState.EndGame: // THÊM CASE NÀY
+                Show(UIPanelType.EndGame);
                 break;
         }
     }

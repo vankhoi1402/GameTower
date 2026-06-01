@@ -26,5 +26,5 @@ public class MoveState : IState
         //  _unit.StateMachine.ChangeState(new AttackState(_unit));
     }
 
-    public void OnExit() => Debug.Log("MOVE: D?ng l?i");
+    public void OnExit() { }
 }

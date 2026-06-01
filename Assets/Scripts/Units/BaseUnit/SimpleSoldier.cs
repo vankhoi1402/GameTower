@@ -28,7 +28,7 @@ public class SimpleSoldier : BaseUnit
     private void HandleAttackVisuals(BaseUnit target, float damage)
     {
         // Test nhanh bằng Debug và Animation
-        Debug.Log($"<color=cyan>[TEST]</color> {data.unitName} đã vung kiếm chém {target.data.unitName}!");
+       // Debug.Log($"<color=cyan>[TEST]</color> {data.unitName} đã vung kiếm chém {target.data.unitName}!");
 
         // Nếu có Animator thì trigger
         // GetComponent<Animator>().SetTrigger("Attack");

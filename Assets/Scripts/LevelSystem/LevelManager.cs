@@ -18,7 +18,21 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        if (currentLevelData != null) LoadLevel(currentLevelData);
+        // LẤY DỮ LIỆU TỪ NGOÀI VÀO TẠI ĐÂY:
+        if (GameMenuManager.Instance != null && GameMenuManager.Instance.SelectedLevelData != null)
+        {
+            currentLevelData = GameMenuManager.Instance.SelectedLevelData;
+        }
+
+        // Thực hiện load trận đấu bình thường dựa trên dữ liệu nhận được
+        if (currentLevelData != null)
+        {
+            LoadLevel(currentLevelData);
+        }
+        else
+        {
+            Debug.LogError("Không tìm thấy dữ liệu LevelData để load trận đấu!");
+        }
     }
 
     public void LoadLevel(LevelData levelData)
