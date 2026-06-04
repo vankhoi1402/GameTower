@@ -1,0 +1,41 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/UI/Setting/SettingUSS.uss" />
+    
+    <ui:VisualElement name="screen-overlay" class="screen-overlay">
+        
+        <ui:VisualElement name="settings-container" class="settings-container">
+            
+            <ui:Label text="SETTINGS" name="header-title" class="header-title" />
+            
+            <ui:VisualElement name="settings-body" class="settings-body">
+                
+                <ui:VisualElement class="setting-row">
+                    <ui:Label text="Master Volume" class="setting-label" />
+                    <ui:Slider name="slider-master" class="setting-slider" />
+                </ui:VisualElement>
+                
+                <ui:VisualElement class="setting-row">
+                    <ui:Label text="Music (BGM)" class="setting-label" />
+                    <ui:Slider name="slider-bgm" class="setting-slider" />
+                </ui:VisualElement>
+                
+                <ui:VisualElement class="setting-row">
+                    <ui:Label text="UI Sound Effects" class="setting-label" />
+                    <ui:Slider name="slider-ui-sfx" class="setting-slider" />
+                </ui:VisualElement>
+                
+                <ui:VisualElement class="setting-row">
+                    <ui:Label text="Battle Effects" class="setting-label" />
+                    <ui:Slider name="slider-battle-sfx" class="setting-slider" />
+                </ui:VisualElement>
+                
+            </ui:VisualElement>
+            
+            <ui:VisualElement name="settings-footer" class="settings-footer">
+                <ui:Button text="CLOSE" name="btn-close" class="btn-close" />
+            </ui:VisualElement>
+            
+        </ui:VisualElement>
+        
+    </ui:VisualElement>
+</ui:UXML>

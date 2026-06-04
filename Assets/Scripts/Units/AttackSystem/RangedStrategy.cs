@@ -56,17 +56,18 @@ public class RangedStrategy : IAttackStrategy
     }
 
     // --- HÀM THỰC THI TẤN CÔNG CHÍNH ---
-    public void ExecuteAttack(BaseUnit attacker, BaseUnit target, float damage)
+    public void ExecuteAttack(BaseUnit owner, BaseUnit target, float damage)
     {
         if (_projectilePool == null) return;
 
         // Lấy một mũi tên rảnh rỗi từ trong Pool ra thay vì Instantiate mới
         Projectile arrow = _projectilePool.Get();
+        BattleEvents.RaisePlaySound3D(SoundType.Battle_ArrowShoot, owner.transform.position);
 
         if (arrow != null)
         {
             // Bơm dữ liệu VÀ truyền kèm chính cái Pool quản lý nó vào
-            arrow.Setup(target, damage, attacker, _projectilePool);
+            arrow.Setup(target, damage, owner, _projectilePool);
         }
     }
 }

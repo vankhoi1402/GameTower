@@ -43,6 +43,7 @@ public class BattleController : MonoBehaviour
             SaveSystem.SetLevelVictory(currentLevelName, 1);
 
             Debug.Log($"[BattleController] Đã lưu chiến thắng cho màn: {currentLevelName}.");
+            BGMManager.Instance.PlayBGM(SoundType.SO_BGM_GameWin);
         }
 
         // BỎ: Không gọi StartCoroutine(ReturnToMenuAfterDelay()) ở đây nữa.

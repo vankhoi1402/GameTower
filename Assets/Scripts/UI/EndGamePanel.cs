@@ -64,6 +64,7 @@ public class EndGamePanel : UIPanel
         if (GameMenuManager.Instance != null)
         {
             GameMenuManager.Instance.BackToMenu("MainMenuScene");
+            BGMManager.Instance.PlayBGM(SoundType.SO_BGM_Menu);
         }
     }
 }

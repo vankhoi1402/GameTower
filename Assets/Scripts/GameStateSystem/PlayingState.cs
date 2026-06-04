@@ -13,7 +13,11 @@ public class PlayingState : GameBaseState
             BattleManager.Instance.StartCombatPhase();
         }
         GameEvents.TriggerStateChanged(GameState.Playing); // Phát loa cho UI mở HUD, cho phép lính di chuyển
+        BGMManager.Instance.PlayBGM(SoundType.SO_BGM_Battle);
     }
     public override void UpdateState(GameManager game) { }
-    public override void ExitState(GameManager game) { }
+    public override void ExitState(GameManager game) {
+        
+
+    }
 }

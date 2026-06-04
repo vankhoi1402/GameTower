@@ -1,0 +1,47 @@
+.menu-background {
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(20, 20, 20);
+    background-image: url("project://database/Assets/Sprites/Background/BackGround.png?fileID=2800000&guid=f18f8caa19e550f41a3590d79a6a6d94&type=3#BackGround");
+}
+
+.game-title {
+    font-size: 55px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    margin-bottom: 60px;
+    letter-spacing: 4px;
+    -unity-text-align: middle-center;
+}
+
+.button-container {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-button {
+    height: 54px;
+    margin-bottom: 16px;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(44, 44, 44);
+    border-width: 2px;
+    border-color: rgb(68, 68, 68);
+    border-radius: 10px;
+    -unity-font-style: bold;
+    transition-property: background-color, scale, border-color;
+    transition-duration: 0.15s;
+    background-image: url("project://database/Assets/Sprites/Resource/Button2.png?fileID=2800000&guid=5bf156e3f19eb5745aa6bf6ad3a5d1c5&type=3#Button2");
+}
+
+.menu-button:hover {
+    
+    scale: 1.05;
+}
+
+.menu-button:active {
+    background-color: rgb(37, 99, 235);
+    scale: 0.95;
+}

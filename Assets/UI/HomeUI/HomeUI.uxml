@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/HomeUI/HomeUSS.uss" />
+    <ui:VisualElement name="Background" class="menu-background">
+        
+        <ui:Label text="MY AWESOME RTS GAME" name="GameTitle" class="game-title" />
+        
+        <ui:VisualElement name="ButtonContainer" class="button-container">
+            <ui:Button text="PLAY" name="PlayButton" class="menu-button" />
+            <ui:Button text="SETTINGS" name="SettingsButton" class="menu-button" />
+            <ui:Button text="QUIT" name="QuitButton" class="menu-button" />
+        </ui:VisualElement>
+        
+    </ui:VisualElement>
+</ui:UXML>

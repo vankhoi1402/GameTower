@@ -109,7 +109,8 @@ public class PlacementSystem : MonoBehaviour
 
         // 3. SỬA CHÍNH: Bàn giao hoàn toàn việc Instantiate cho SpawnManager
         SpawnManager.Instance.SpawnUnit(_selectedUnit, _currentCell.WorldPosition, TeamType.Player);
-
+        // phat sound
+        BattleEvents.RaisePlaySound3D(SoundType.Battle_Place_Unit, _currentCell.WorldPosition);
         // Hủy chọn sau khi đặt (hoặc giữ nguyên nếu muốn đặt liên tục nhiều lính cùng loại)
         CancelPlacement();
     }
