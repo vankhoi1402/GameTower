@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour
@@ -13,7 +13,9 @@ public class BattleManager : MonoBehaviour
 
     private bool _isCombatActive = false;
     private bool _isMatchOver = false;
-    public MatchResult LastMatchResult { get; private set; } // TH�M D�NG N�Y
+    public MatchResult LastMatchResult { get; private set; } // THÊM DÒNG NÀY
+    // ---- THÊM THUỘC TÍNH NÀY để UI có thể chủ động check nhanh ----
+    public bool HasPlayerUnits => _playerUnits.Count > 0;
 
     private void Awake()
     {
@@ -45,6 +47,12 @@ public class BattleManager : MonoBehaviour
         else _enemyUnits.Add(unit);
 
         GlobalEventBus.OnLiveArmyCountChanged?.Invoke(_playerUnits.Count, _enemyUnits.Count);
+        // ---- THÊM LOGIC KIỂM TRA ĐẶT QUÂN QUAN TRỌNG ----
+        // Nếu đây là quân Player ĐẦU TIÊN được đặt xuống sân -> Mở khóa nút
+        if (unit.Team == TeamType.Player && _playerUnits.Count == 1)
+        {
+            GlobalEventBus.OnPlayerUnitsAvailabilityChanged?.Invoke(true);
+        }
     }
 
     private void HandleUnitDied(BaseUnit unit)
@@ -53,6 +61,12 @@ public class BattleManager : MonoBehaviour
         else _enemyUnits.Remove(unit);
 
         GlobalEventBus.OnLiveArmyCountChanged?.Invoke(_playerUnits.Count, _enemyUnits.Count);
+        // ---- THÊM LOGIC KIỂM TRA CHẾT/THU HỒI QUÂN QUAN TRỌNG ----
+        // Nếu trên sân KHÔNG CÒN quân Player nào nữa -> Khóa nút lại
+        if (unit.Team == TeamType.Player && _playerUnits.Count == 0)
+        {
+            GlobalEventBus.OnPlayerUnitsAvailabilityChanged?.Invoke(false);
+        }
         CheckWinCondition();
     }
 
@@ -80,5 +94,7 @@ public class BattleManager : MonoBehaviour
         _isCombatActive = false;
         _isMatchOver = false;
         LastMatchResult = MatchResult.Defeat;
+        // ---- RESET TRẠNG THÁI NÚT KHI SANG MÀN MỚI ----
+        GlobalEventBus.OnPlayerUnitsAvailabilityChanged?.Invoke(false);
     }
 }

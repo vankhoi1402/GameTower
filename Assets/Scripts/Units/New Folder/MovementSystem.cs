@@ -36,20 +36,54 @@ public class MovementSystem
         _owner.transform.position += finalDirection * (speed * Time.deltaTime);
 
         // 5. Cập nhật hình ảnh & Hoạt họa
-        HandleFlip(finalDirection.x);
+        // nhìn theo mục tiêu
+        HandleFlip(directionToTarget.x);
 
-      
+
     }
 
     public void Stop()
     {
         
     }
+    public void FaceTarget(BaseUnit target)
+    {
+        if (target == null) return;
+
+        _spriteRenderer.flipX =
+            target.transform.position.x < _owner.transform.position.x;
+    }
 
     private void HandleFlip(float horizontalDirection)
     {
-        if (horizontalDirection > 0.01f) _spriteRenderer.flipX = false;
-        else if (horizontalDirection < -0.01f) _spriteRenderer.flipX = true;
+        if (_spriteRenderer == null)
+            return;
+
+        // Ưu tiên nhìn vào mục tiêu hiện tại
+        if (_owner.Targeting != null &&
+            _owner.Targeting.HasTarget &&
+            _owner.Targeting.CurrentTarget != null)
+        {
+            float targetX =
+                _owner.Targeting.CurrentTarget.transform.position.x -
+                _owner.transform.position.x;
+
+            if (Mathf.Abs(targetX) > 0.01f)
+            {
+                _spriteRenderer.flipX = targetX < 0f;
+                return;
+            }
+        }
+
+        // Không có mục tiêu thì nhìn theo hướng di chuyển
+        if (horizontalDirection > 0.01f)
+        {
+            _spriteRenderer.flipX = false;
+        }
+        else if (horizontalDirection < -0.01f)
+        {
+            _spriteRenderer.flipX = true;
+        }
     }
 
     // --- HÀM TÍNH TOÁN LỰC ĐẨY KÍN BÊN TRONG ---

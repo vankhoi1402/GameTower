@@ -20,4 +20,5 @@ MonoBehaviour:
   attackRange: 7
   detectRange: 10
   capacityCost: 1
-  prefab: {fileID: 1339336480761014465, guid: 2369eb4fe09446045a51f9d8b6ac8b02, type: 3}
+  playerPrefab: {fileID: 1339336480761014465, guid: 2369eb4fe09446045a51f9d8b6ac8b02, type: 3}
+  enemyPrefab: {fileID: 1339336480761014465, guid: 423a68fc0823f0645a775fde9c4c501f, type: 3}

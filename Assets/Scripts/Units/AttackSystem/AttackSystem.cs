@@ -51,6 +51,7 @@ public class AttackSystem
         {
             // Bước A: Ghi nhớ mục tiêu hiện tại
             _currentTarget = target;
+            _owner.MoveSystem.FaceTarget(target);
 
             // Bước B: PHÁT ANIMATION TẠI ĐÂY (Bắn và quên)
             // Khóa hoạt họa lại để không bị các trạng thái như chạy bộ đè lên giữa chừng

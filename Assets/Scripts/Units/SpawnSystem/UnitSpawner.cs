@@ -6,6 +6,6 @@ public class UnitSpawner : MonoBehaviour
 
     public void Spawn(UnitData data, Transform point)
     {
-        Instantiate(data.prefab, point.position, Quaternion.identity);
+       // Instantiate(data.prefab, point.position, Quaternion.identity);
     }
 }

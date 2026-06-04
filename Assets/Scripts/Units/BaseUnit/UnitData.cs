@@ -14,6 +14,7 @@ public class UnitData : ScriptableObject
     public float detectRange;
     [Header("Army")]
     public int capacityCost = 1;
-    [Header("Visuals")]
-    public GameObject prefab; // Hình dáng của quân lính
+    [Header("Prefabs")]
+    public GameObject playerPrefab;
+    public GameObject enemyPrefab;
 }

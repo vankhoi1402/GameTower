@@ -12,4 +12,6 @@ public static class GlobalEventBus
 
     // Trạng thái trận đấu
     public static Action<MatchResult> OnMatchEnded;
+    // true = có quân (mở nút), false = hết quân (khóa nút)
+    public static Action<bool> OnPlayerUnitsAvailabilityChanged;
 }

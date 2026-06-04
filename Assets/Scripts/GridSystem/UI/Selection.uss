@@ -1,4 +1,4 @@
-.root-style {
+﻿.root-style {
     flex-grow: 1;
     width: 100%;
     height: 100%;
@@ -130,4 +130,16 @@
     border-right-color: rgba(255, 255, 255, 0.15);
     border-top-color: rgba(255, 255, 255, 0.15);
     border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+/* Trạng thái nút bị khóa và chuyển sang màu đỏ */
+.button-disabled-red {
+    background-color: rgba(255, 0, 0, 0.6); /* Màu đỏ có chút độ trong suốt (alpha = 0.6) */
+    color: #ffffff;                         /* Chữ màu trắng */
+    border-color: #ff0000;                  /* Viền màu đỏ rực */
+}
+
+/* Tùy chọn: Thêm hiệu ứng di chuột (hover) nhưng không đổi màu khi đang bị khóa */
+.button-disabled-red:hover {
+    background-color: rgba(255, 0, 0, 0.6); 
+    cursor: not-allowed;                    /* Biến con trỏ chuột thành hình cấm bấm */
 }

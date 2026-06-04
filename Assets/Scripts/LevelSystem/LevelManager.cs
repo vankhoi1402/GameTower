@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
@@ -47,28 +48,28 @@ public class LevelManager : MonoBehaviour
         SetupEnemyFormation(levelData.enemyTroopsSetup);
     }
 
-    private void SetupEnemyFormation(System.Collections.Generic.List<EnemyGridConfig> enemySetup)
+    private void SetupEnemyFormation(List<EnemyGridConfig> enemySetup)
     {
         if (grid == null) return;
 
         foreach (var config in enemySetup)
         {
-            if (config.enemyData == null || config.enemyData.prefab == null) continue;
+            if (config.enemyData == null)
+                continue;
 
-            FormationCell targetCell = grid.GetCell(config.gridCoordinate.x, config.gridCoordinate.y);
+            FormationCell targetCell = grid.GetCell(
+                config.gridCoordinate.x,
+                config.gridCoordinate.y);
 
-            if (targetCell != null && !targetCell.Occupied)
-            {
-                GameObject enemyObj = Instantiate(config.enemyData.prefab, targetCell.WorldPosition, Quaternion.identity);
+            if (targetCell == null || targetCell.Occupied)
+                continue;
 
-                BaseUnit unitScript = enemyObj.GetComponent<BaseUnit>();
-                if (unitScript != null)
-                {
-                    unitScript.Team = TeamType.Enemy;
-                }
+            SpawnManager.Instance.SpawnUnit(
+                config.enemyData,
+                targetCell.WorldPosition,
+                TeamType.Enemy);
 
-                targetCell.Occupied = true;
-            }
+            targetCell.Occupied = true;
         }
     }
 }

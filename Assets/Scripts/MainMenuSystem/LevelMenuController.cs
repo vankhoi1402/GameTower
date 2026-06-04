@@ -22,6 +22,11 @@ public class LevelMenuController : MonoBehaviour
     private VisualElement imgRewardIcon;
     private Button btnPlay;
 
+    // ---- ĐÃ THÊM 2 DÒNG NÀY ----
+    private Button btnSettings;
+    private Button btnBack;
+    private string homeScene = "HomeScene";
+
     void OnEnable()
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
@@ -35,6 +40,13 @@ public class LevelMenuController : MonoBehaviour
         btnPlay.clicked += OnPlayButtonClicked;
         btnPlay.SetEnabled(false);
 
+        // ---- ĐÃ THÊM ÁNH XẠ VÀ ĐĂNG KÝ SỰ KIỆN CHO 2 NÚT HEADER ----
+        btnSettings = root.Q<Button>("BtnSettings");
+        btnBack = root.Q<Button>("BtnBack");
+
+        if (btnSettings != null) btnSettings.clicked += OnSettingsButtonClicked;
+        if (btnBack != null) btnBack.clicked += OnBackButtonClicked;
+
         // 2. Khởi tạo các Views và lắng nghe sự kiện
         sidebarView = new ChapterSidebarView(root.Q<ScrollView>("ChapterContainer"));
         sidebarView.OnChapterClicked += HandleChapterSelected;
@@ -46,9 +58,19 @@ public class LevelMenuController : MonoBehaviour
         RefreshMenuSystem();
     }
 
+    // ---- ĐỪNG QUÊN HỦY ĐĂNG KÝ SỰ KIỆN TRONG ONDISABLE ĐỂ TRÁNH LỖI ----
+    void OnDisable()
+    {
+        if (btnPlay != null) btnPlay.clicked -= OnPlayButtonClicked;
+        if (btnSettings != null) btnSettings.clicked -= OnSettingsButtonClicked;
+        if (btnBack != null) btnBack.clicked -= OnBackButtonClicked;
+
+        if (sidebarView != null) sidebarView.OnChapterClicked -= HandleChapterSelected;
+        if (gridView != null) gridView.OnLevelClicked -= HandleLevelSelected;
+    }
+
     public void RefreshMenuSystem()
     {
-        // Chọn mặc định chương đầu tiên nếu chưa có
         if (chaptersList.Count > 0 && selectedChapter == null)
         {
             HandleChapterSelected(chaptersList[0]);
@@ -65,14 +87,12 @@ public class LevelMenuController : MonoBehaviour
         selectedLevel = null;
         btnPlay.SetEnabled(false);
 
-        // Cập nhật Header & Reward UI
         txtCurrentChapterTitle.text = $"{chapter.chapterName.ToUpper()} - LEVEL SELECT";
         txtRewardName.text = chapter.rewardName;
 
         if (chapter.rewardIcon != null) imgRewardIcon.style.backgroundImage = new StyleBackground(chapter.rewardIcon);
         else imgRewardIcon.style.backgroundImage = null;
 
-        // Yêu cầu các Views vẽ lại màn hình
         sidebarView.Render(chaptersList, selectedChapter);
         gridView.Render(chapter);
     }
@@ -80,15 +100,29 @@ public class LevelMenuController : MonoBehaviour
     private void HandleLevelSelected(LevelData level)
     {
         selectedLevel = level;
-        btnPlay.SetEnabled(true); // Chỉ khi chọn level mới được phép bấm Play
+        btnPlay.SetEnabled(true);
     }
 
     private void OnPlayButtonClicked()
     {
         if (selectedLevel != null && !string.IsNullOrEmpty(selectedLevel.sceneToLoad))
         {
-            // Bàn giao cho GameManager vận chuyển dữ liệu vào Scene trận đấu
             GameMenuManager.Instance.StartBattle(selectedLevel, selectedLevel.sceneToLoad);
         }
+    }
+
+    // ---- ĐÃ THÊM LOGIC CHO 2 NÚT MỚI ----
+    private void OnSettingsButtonClicked()
+    {
+        Debug.Log("Mở bảng cài đặt (Settings)...");
+        
+        SettingsManager.Instance.Open();
+    }
+
+    private void OnBackButtonClicked()
+    {
+        Debug.Log("Quay lại màn hình trước đó...");
+        // Gọi logic quay lại Main Menu của bạn ở đây
+        GameMenuManager.Instance.BackToMenu(homeScene);
     }
 }
