@@ -17,4 +17,7 @@ public class UnitData : ScriptableObject
     [Header("Prefabs")]
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
+
+    [Header("UI")]
+    public Sprite icon;
 }

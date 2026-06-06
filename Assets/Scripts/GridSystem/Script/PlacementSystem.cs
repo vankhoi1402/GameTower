@@ -27,7 +27,7 @@ public class PlacementSystem : MonoBehaviour
         {
             Button btn = new Button();
             btn.AddToClassList("unit-button");
-           // btn.style.backgroundImage = new StyleBackground(unit.icon);
+            btn.style.backgroundImage = new StyleBackground(unit.icon);
 
             // Đăng ký sự kiện chọn quân
             btn.clicked += () => BeginPlacement(unit);
@@ -88,7 +88,16 @@ public class PlacementSystem : MonoBehaviour
         {
             if (_currentCell != null && !_currentCell.Occupied)
             {
-                PlaceUnit();
+                // SỬA Ở ĐÂY: Thêm điều kiện kiểm tra Capacity
+                if (ArmyManager.Instance.CanPlaceUnit(_selectedUnit))
+                {
+                    PlaceUnit();
+                }
+                else
+                {
+                    Debug.Log("Không đủ chỉ số quân (Capacity) để đặt thêm!");
+                    // (Tùy chọn) Thêm âm thanh báo lỗi hoặc hiệu ứng rung UI tại đây
+                }
             }
         }
 

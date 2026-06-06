@@ -12,18 +12,49 @@ public class SettingsUIController : MonoBehaviour
     private Slider _sliderBattleSFX;
     private Button _btnClose;
     private bool _isOpened = false;
+    private bool _initialized;
 
     private void Awake()
     {
         _uiDocument = GetComponent<UIDocument>();
+
+        
     }
 
     private void Start()
     {
-        var root = _uiDocument.rootVisualElement;
-        if (root == null) return;
+        // Để đảm bảo ngay khi Instantiate, mọi biến đã sẵn sàng
+        //var root = _uiDocument.rootVisualElement;
+        //if (root != null)
+        //{
+        //    _screenOverlay = root.Q<VisualElement>("screen-overlay");
+        //    _sliderMaster = root.Q<Slider>("slider-master");
+        //    _sliderBGM = root.Q<Slider>("slider-bgm");
+        //    _sliderUISFX = root.Q<Slider>("slider-ui-sfx");
+        //    _sliderBattleSFX = root.Q<Slider>("slider-battle-sfx");
+        //    _btnClose = root.Q<Button>("btn-close");
 
-        // Ánh xạ chuẩn chỉ chạy 1 lần duy nhất khi UI được tạo ra ở Scene hiện tại
+        //    ConfigureSlider(_sliderMaster, AudioChannel.Master, OnMasterVolumeChanged);
+        //    ConfigureSlider(_sliderBGM, AudioChannel.BGM, OnBGMVolumeChanged);
+        //    ConfigureSlider(_sliderUISFX, AudioChannel.UI_SFX, OnUISFXVolumeChanged);
+        //    ConfigureSlider(_sliderBattleSFX, AudioChannel.Battle_SFX, OnBattleSFXVolumeChanged);
+
+        //    if (_btnClose != null) _btnClose.clicked += OnCloseButtonClicked;
+        //}
+    }
+    private void Initialize()
+    {
+        if (_initialized)
+            return;
+
+        var root = _uiDocument.rootVisualElement;
+
+        if (root == null)
+        {
+            Debug.LogError("RootVisualElement is null!");
+            return;
+        }
+
         _screenOverlay = root.Q<VisualElement>("screen-overlay");
         _sliderMaster = root.Q<Slider>("slider-master");
         _sliderBGM = root.Q<Slider>("slider-bgm");
@@ -36,9 +67,12 @@ public class SettingsUIController : MonoBehaviour
         ConfigureSlider(_sliderUISFX, AudioChannel.UI_SFX, OnUISFXVolumeChanged);
         ConfigureSlider(_sliderBattleSFX, AudioChannel.Battle_SFX, OnBattleSFXVolumeChanged);
 
-        if (_btnClose != null) _btnClose.clicked += OnCloseButtonClicked;
+        if (_btnClose != null)
+            _btnClose.clicked += OnCloseButtonClicked;
 
-        SetVisibility(false); // Mặc định ẩn
+        _initialized = true;
+
+        Debug.Log("Settings UI Initialized");
     }
 
     private void OnDestroy()
@@ -52,6 +86,7 @@ public class SettingsUIController : MonoBehaviour
 
     public void SetVisibility(bool visible)
     {
+        Initialize();
         if (_screenOverlay == null) return;
         _isOpened = visible;
         _screenOverlay.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None;
@@ -69,6 +104,7 @@ public class SettingsUIController : MonoBehaviour
 
     private void UpdateSliderValues()
     {
+        Debug.Log(UISoundManager.Instance);
         if (UISoundManager.Instance == null) return;
         if (_sliderMaster != null) _sliderMaster.value = UISoundManager.Instance.GetSavedVolume(AudioChannel.Master);
         if (_sliderBGM != null) _sliderBGM.value = UISoundManager.Instance.GetSavedVolume(AudioChannel.BGM);

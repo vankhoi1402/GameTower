@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41bf913d1c237b34099736a69b4f7cb9, type: 3}
-  m_Name: Worrior
+  m_Name: Barrel
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   unitName: 
-  maxHP: 200
-  damage: 10
-  moveSpeed: 1.2
-  attackSpeed: 0.5
-  attackRange: 1
-  detectRange: 10
+  maxHP: 100
+  damage: 100
+  moveSpeed: 1.5
+  attackSpeed: 1
+  attackRange: 1.5
+  detectRange: 12
   capacityCost: 1
-  playerPrefab: {fileID: 5868548229645269517, guid: be1d7d4ac78dc6049ba1fc3525cc51e9, type: 3}
-  enemyPrefab: {fileID: 5868548229645269517, guid: 83b4189f20d29f64a8439bad05896deb, type: 3}
-  icon: {fileID: 1448252480329919801, guid: bf526546ff1db824c820f0526b91e8f8, type: 3}
+  playerPrefab: {fileID: 3810320769910622471, guid: 63d7bf947f6c8934c8f0a9971534cf98, type: 3}
+  enemyPrefab: {fileID: 3810320769910622471, guid: 4077a2dc6694b964dbd748b5e3157d5f, type: 3}
+  icon: {fileID: 5979081549504815066, guid: be5b913b6b6f05948bc3a5a0a348ef24, type: 3}

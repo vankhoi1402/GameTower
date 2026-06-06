@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.Port;
 
 public class PreparePanel : UIPanel
 {
     private Button _btnStart;
+    private Label _lblCapacity;
 
     public PreparePanel(VisualElement root, UIManager manager, string elementName)
         : base(root, manager, elementName)
     {
         _btnStart = RootElement.Q<Button>("ready-button");
+        // ---- THÊM MỚI: Tìm nhãn capacity-label trong file UXML ----
+        _lblCapacity = RootElement.Q<Label>("capacity-label");
 
         if (_btnStart == null)
         {
@@ -37,6 +41,22 @@ public class PreparePanel : UIPanel
             // 2. Lắng nghe thay đổi khi người chơi đặt thêm hoặc gỡ bớt quân
             GlobalEventBus.OnPlayerUnitsAvailabilityChanged += UpdateButtonState;
         }
+        // ----KHU VỰC THÊM MỚI CỦA CAPACITY LABEL ----
+        if (_lblCapacity != null)
+        {
+            // 1. Lắng nghe thay đổi quân số khi người chơi đặt/hủy lính
+            GlobalEventBus.OnPlacementCapacityChanged += UpdateCapacityUI;
+
+            // 2. Cập nhật số liệu chuẩn ngay khi vừa mở Panel lên
+            if (ArmyManager.Instance != null)
+            {
+                UpdateCapacityUI(ArmyManager.Instance.CurrentUsedCapacity, ArmyManager.Instance.MaxCapacity);
+            }
+            else
+            {
+                _lblCapacity.text = "QUÂN SỐ: 0/0";
+            }
+        }
     }
 
     public override void Hide()
@@ -49,6 +69,11 @@ public class PreparePanel : UIPanel
             // ---- KHU VỰC THÊM MỚI ----
             // 3. Hủy lắng nghe để tránh lỗi tràn bộ nhớ (Memory Leak)
             GlobalEventBus.OnPlayerUnitsAvailabilityChanged -= UpdateButtonState;
+        }
+        // ---- KHU VỰC THÊM MỚI: Hủy đăng ký để tránh tràn bộ nhớ ----
+        if (_lblCapacity != null)
+        {
+            GlobalEventBus.OnPlacementCapacityChanged -= UpdateCapacityUI;
         }
     }
 
@@ -70,6 +95,26 @@ public class PreparePanel : UIPanel
             {
                 // Nếu KHÔNG có quân -> Thêm class màu đỏ vào để cảnh báo
                 _btnStart.AddToClassList("button-disabled-red");
+            }
+        }
+    }
+
+    // ---- HÀM XỬ LÝ HIỂN THỊ SỐ LIỆU QUÂN SỐ ----
+    private void UpdateCapacityUI(int current, int max)
+    {
+        if (_lblCapacity != null)
+        {
+            _lblCapacity.text = $"QUÂN SỐ: {current}/{max}";
+
+            // Tính năng phụ (UX): Nếu đầy quân (max) thì đổi chữ sang màu Vàng cảnh báo cho đẹp
+            if (current >= max && max > 0)
+            {
+                _lblCapacity.style.color = new StyleColor(Color.yellow);
+            }
+            else
+            {
+                // Trở lại màu xanh cyan gốc (#64c8ff) đã thiết kế ở USS
+                _lblCapacity.style.color = new StyleColor(new Color(0.39f, 0.78f, 1f));
             }
         }
     }

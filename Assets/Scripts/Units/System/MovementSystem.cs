@@ -7,8 +7,8 @@ public class MovementSystem
     
 
     // --- CẤU HÌNH TÁCH BẦY (Chuyển từ State sang đây) ---
-    private float _separationRadius = 1.0f;
-    private float _separationWeight = 1.5f;
+    private float _separationRadius = 0.7f;
+    private float _separationWeight = 0.7f;
     private Collider2D[] _neighbors = new Collider2D[10];
 
     public MovementSystem(BaseUnit owner)

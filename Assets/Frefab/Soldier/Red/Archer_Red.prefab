@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5897640521674303601}
   - component: {fileID: 7731854869388279385}
   - component: {fileID: 2716821255337604495}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 534051932397721617}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 1300202876352865503}
   - component: {fileID: 5062115278107130317}
   - component: {fileID: 1849937556352558601}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Archer_Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}

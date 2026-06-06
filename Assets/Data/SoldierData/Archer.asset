@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   unitName: 
   maxHP: 150
-  damage: 14
+  damage: 15
   moveSpeed: 2
   attackSpeed: 1
   attackRange: 7
@@ -22,3 +22,4 @@ MonoBehaviour:
   capacityCost: 1
   playerPrefab: {fileID: 1339336480761014465, guid: 2369eb4fe09446045a51f9d8b6ac8b02, type: 3}
   enemyPrefab: {fileID: 1339336480761014465, guid: 423a68fc0823f0645a775fde9c4c501f, type: 3}
+  icon: {fileID: 7770549794764293946, guid: 0bb9ae90d6218114abdbc3b52f16d217, type: 3}

@@ -6,6 +6,7 @@ public class ArmyManager : MonoBehaviour
 
     public int MaxCapacity { get; private set; }
     private int _currentUsedCapacity = 0;
+    public int CurrentUsedCapacity => _currentUsedCapacity;
 
     private void Awake()
     {

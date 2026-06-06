@@ -109,6 +109,7 @@ public class LevelMenuController : MonoBehaviour
         {
             GameMenuManager.Instance.StartBattle(selectedLevel, selectedLevel.sceneToLoad);
         }
+        UIEvents.RaisePlaySound(SoundType.UI_Click);
     }
 
     // ---- ĐÃ THÊM LOGIC CHO 2 NÚT MỚI ----
@@ -117,6 +118,7 @@ public class LevelMenuController : MonoBehaviour
         Debug.Log("Mở bảng cài đặt (Settings)...");
         
         SettingsManager.Instance.Open();
+        UIEvents.RaisePlaySound(SoundType.UI_Click);
     }
 
     private void OnBackButtonClicked()
@@ -124,5 +126,6 @@ public class LevelMenuController : MonoBehaviour
         Debug.Log("Quay lại màn hình trước đó...");
         // Gọi logic quay lại Main Menu của bạn ở đây
         GameMenuManager.Instance.BackToMenu(homeScene);
+        UIEvents.RaisePlaySound(SoundType.UI_Click);
     }
 }
