@@ -1,14 +1,19 @@
-﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="selection.uss"/>
-    <ui:VisualElement name="root-container" class="root-style">
-        <ui:Button name="exit-button" text="X" class="exit-button"/>
-        <ui:VisualElement name="grid" class="grid-container"/>
+    <ui:VisualElement name="root-container" class="root-style" picking-mode="Ignore">
         
-        <ui:VisualElement name="bottom-ui">
-            <ui:Label name="capacity-label" text="QUÂN SỐ: 0/0" class="capacity-label"/>
-            
-            <ui:Button name="ready-button" text="READY" class="ready-button"/>
-            <ui:VisualElement name="inventory-bar" class="inventory-bar"/>
+        <ui:VisualElement name="grid" class="grid-container" picking-mode="Ignore"/>
+        
+        <ui:VisualElement name="top-hud" class="top-hud-container" picking-mode="Ignore">
+            <ui:Label name="capacity-label" text="QUÂN SỐ: 0/0" class="capacity-label" picking-mode="Position"/>
         </ui:VisualElement>
+        
+        <ui:VisualElement name="bottom-ui" picking-mode="Ignore">
+            <ui:Button name="ready-button" text="READY" class="ready-button" picking-mode="Position"/>
+            <ui:VisualElement name="inventory-bar" class="inventory-bar" picking-mode="Position"/>
+        </ui:VisualElement>
+
+        <ui:Button name="exit-button" text="X" class="exit-button" picking-mode="Position"/>
+
     </ui:VisualElement>
 </ui:UXML>

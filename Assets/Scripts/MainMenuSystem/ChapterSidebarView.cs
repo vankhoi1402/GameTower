@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ChapterSidebarView
+public class ChapterSidebarView 
 {
     private ScrollView chapterContainer;
 
@@ -17,13 +18,43 @@ public class ChapterSidebarView
     public void Render(List<ChapterData> chaptersList, ChapterData selectedChapter)
     {
         chapterContainer.Clear();
-        bool previousChapterCompleted = true; // Chương đầu tiên luôn mở
+        bool previousChapterCompleted = true;
 
         for (int i = 0; i < chaptersList.Count; i++)
         {
             ChapterData chapter = chaptersList[i];
+
             bool isChapterUnlocked = previousChapterCompleted;
             previousChapterCompleted = chapter.IsChapterFullyCompleted();
+
+            // ---------------------------------------------------------
+            // GỌI POPUP MANAGER Ở ĐÂY
+            // ---------------------------------------------------------
+            if (isChapterUnlocked && i > 0)
+            {
+                // 1. Xác định rõ ràng 2 chương: Chương cũ vừa xong và Chương mới được mở
+                ChapterData completedChapter = chaptersList[i - 1]; // Chương vừa hoàn thành
+                ChapterData unlockedChapter = chapter;             // Chương mới được mở khóa
+
+                Debug.Log($"---> CAMERA 1: Chương [{unlockedChapter.chapterName}] đã mở! Check save...");
+
+                // Dùng tên của chương MỚI để kiểm tra và lưu dữ liệu Save
+                if (!SaveSystem.HasShownUnlockPopup(unlockedChapter.chapterName))
+                {
+                    Debug.Log($"---> CAMERA 2: Chưa show popup! Gọi PopupManager cho [{unlockedChapter.chapterName}]");
+
+                    // SỬA TẠI ĐÂY (DÒNG 41): Truyền đủ cả 2 tham số (Chương cũ, Chương mới)
+                    PopupManager.Instance.ShowChapterUnlock(completedChapter, unlockedChapter);
+
+                    // Lưu lại theo tên chương mới để lần sau không bị hiện đè
+                    SaveSystem.SetUnlockPopupShown(unlockedChapter.chapterName);
+                }
+                else
+                {
+                    Debug.Log($"---> CAMERA 3: Đã show popup từ trước rồi, bỏ qua!");
+                }
+            }
+            // ---------------------------------------------------------
 
             VisualElement card = CreateChapterCard(chapter, isChapterUnlocked, selectedChapter == chapter);
             chapterContainer.Add(card);

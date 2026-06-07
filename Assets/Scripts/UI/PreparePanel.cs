@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.Experimental.GraphView.Port;
+
 
 public class PreparePanel : UIPanel
 {
     private Button _btnStart;
     private Label _lblCapacity;
+    private Button _btnExit;
 
     public PreparePanel(VisualElement root, UIManager manager, string elementName)
         : base(root, manager, elementName)
     {
         _btnStart = RootElement.Q<Button>("ready-button");
+
+        _btnExit = RootElement.Q<Button>("exit-button");
         // ---- THÊM MỚI: Tìm nhãn capacity-label trong file UXML ----
         _lblCapacity = RootElement.Q<Label>("capacity-label");
 
@@ -57,6 +60,14 @@ public class PreparePanel : UIPanel
                 _lblCapacity.text = "QUÂN SỐ: 0/0";
             }
         }
+        if (_btnExit != null) {
+            _btnExit.clicked += OnXButtonClicked;
+        }
+        else
+        {
+            Debug.Log("ko co gi ");
+        }
+           
     }
 
     public override void Hide()
@@ -74,6 +85,11 @@ public class PreparePanel : UIPanel
         if (_lblCapacity != null)
         {
             GlobalEventBus.OnPlacementCapacityChanged -= UpdateCapacityUI;
+        }
+        //
+        if (_btnExit != null)
+        {
+            _btnExit.clicked -= OnXButtonClicked;
         }
     }
 
@@ -123,5 +139,13 @@ public class PreparePanel : UIPanel
     {
         Debug.Log("Nút Start đã được bấm!");
         GameEvents.CallStateChange(GameState.Playing);
+    }
+    private void OnXButtonClicked()
+    {
+        if (GameMenuManager.Instance != null)
+        {
+            GameMenuManager.Instance.BackToMenu("MainMenuScene");
+            BGMManager.Instance.PlayBGM(SoundType.SO_BGM_Menu);
+        }
     }
 }

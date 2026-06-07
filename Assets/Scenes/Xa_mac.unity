@@ -570,6 +570,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 06ce21d396b461b40b3cab508a4bb336, type: 2}
   - {fileID: 11400000, guid: 6d5ebbf338a950a4aa677dbc247a1ad7, type: 2}
   - {fileID: 11400000, guid: ddd8de55049e64c4ba4168ad5f66fc4d, type: 2}
+  - {fileID: 11400000, guid: 4b266bbb6d688d94bb1d1b4df8b1fcac, type: 2}
   audioSourcePrefab: {fileID: 5769259325677449579, guid: fdf4232b9479307468ca1a88d945376b, type: 3}
   battlePoolSize: 20
 --- !u!82 &923308001

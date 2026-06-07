@@ -9,6 +9,7 @@ public enum SoundType
 
 
     // Battle Sounds (3D)
+    Battle_Bomb = 8,
     Battle_Place_Unit = 9,
     Battle_SwordSlash = 10,
     Battle_ArrowShoot = 11,
@@ -19,6 +20,7 @@ public enum SoundType
     SO_BGM_Menu= 14,
     SO_BGM_Battle= 15,
     SO_BGM_GameWin= 16,
+    SO_BGM_Reward=17
 }
 
 // Định danh các kênh âm thanh trong bảng Cài đặt Settings

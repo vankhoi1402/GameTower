@@ -1,0 +1,50 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+
+    <Style src="UnlockCard.uss"/>
+
+    <ui:VisualElement
+        name="overlay"
+        class="overlay">
+
+        <ui:VisualElement
+            name="card-container"
+            class="card">
+
+            <ui:Label
+                text="NEW CHAPTER UNLOCKED"
+                class="title"/>
+
+            <ui:VisualElement
+                name="chapter-icon"
+                class="chapter-icon"/>
+
+            <ui:Label
+                name="chapter-name"
+                class="chapter-name"/>
+
+            <ui:Label
+                name="chapter-description"
+                class="chapter-description"/>
+
+            <ui:Label
+                text="Reward"
+                class="reward-title"/>
+
+            <ui:VisualElement
+                name="reward-icon"
+                class="reward-icon"/>
+
+            <ui:Label
+                name="reward-name"
+                class="reward-name"/>
+
+            <ui:Button
+                name="confirm-button"
+                text="Confirm"
+                class="confirm-button"/>
+
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+
+</ui:UXML>

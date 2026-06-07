@@ -17,7 +17,7 @@ MonoBehaviour:
   damage: 100
   moveSpeed: 1.5
   attackSpeed: 1
-  attackRange: 1.5
+  attackRange: 0.7
   detectRange: 12
   capacityCost: 1
   playerPrefab: {fileID: 3810320769910622471, guid: 63d7bf947f6c8934c8f0a9971534cf98, type: 3}

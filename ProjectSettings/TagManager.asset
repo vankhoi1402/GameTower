@@ -47,8 +47,11 @@ TagManager:
   - name: Units
     uniqueID: 3371413489
     locked: 0
-  - name: 
+  - name: HeathBar
     uniqueID: 1573078019
+    locked: 0
+  - name: Heath
+    uniqueID: 2879253085
     locked: 0
   m_RenderingLayers:
   - Default

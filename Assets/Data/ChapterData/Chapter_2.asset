@@ -18,5 +18,4 @@ MonoBehaviour:
   rewardName: ARCHER
   rewardIcon: {fileID: -4123184172539579323, guid: 896959b8debc17e4cb309ca1208cf053, type: 3}
   levels:
-  - {fileID: 11400000, guid: 2b8e3cafce77a8b468adcddb79742bc0, type: 2}
-  - {fileID: 11400000, guid: d9b0b173c7fa63b4bb0249e0dc68b23b, type: 2}
+  - {fileID: 11400000, guid: 1b8e2d5622d6dba44950f50458323fa1, type: 2}
