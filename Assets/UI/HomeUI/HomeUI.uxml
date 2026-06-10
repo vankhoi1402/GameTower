@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI/HomeUI/HomeUSS.uss" />
     <ui:VisualElement name="Background" class="menu-background">
         
-        <ui:Label text="MY AWESOME RTS GAME" name="GameTitle" class="game-title" />
+        <ui:Label text="BATTLE WORLD" name="GameTitle" class="game-title" />
         
         <ui:VisualElement name="ButtonContainer" class="button-container">
             <ui:Button text="PLAY" name="PlayButton" class="menu-button" />

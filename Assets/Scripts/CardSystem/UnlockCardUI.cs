@@ -11,7 +11,7 @@ public class UnlockCardUI : MonoBehaviour
     [SerializeField] private float _fadeInDuration = 0.6f;
 
     [Tooltip("Thời gian cái card phóng to nảy ra (Khuyên dùng: 0.6 - 0.8)")]
-    [SerializeField] private float _scaleInDuration = 0.7f;
+    [SerializeField] private float _scaleInDuration = 1f;
 
     [Tooltip("Thời gian toàn bộ UI thu nhỏ và biến mất khi bấm Confirm (Khuyên dùng: 0.3 - 0.4)")]
     [SerializeField] private float _fadeOutDuration = 0.4f;
@@ -86,6 +86,7 @@ public class UnlockCardUI : MonoBehaviour
     public void Show(ChapterData completedChapter, ChapterData nextChapter, Action onClosed)
     {
         Initialize();
+        BGMManager.Instance.PlayBGM(SoundType.SO_BGM_Reward);
 
         if (!_isInitialized) return;
 
@@ -130,6 +131,7 @@ public class UnlockCardUI : MonoBehaviour
     private void Confirm()
     {
         if (!_isInitialized) return;
+        BGMManager.Instance.PlayBGM(SoundType.SO_BGM_Menu);
 
         _overlay.pickingMode = PickingMode.Ignore;
 

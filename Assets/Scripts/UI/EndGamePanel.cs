@@ -12,11 +12,11 @@ public class EndGamePanel : UIPanel
     {
         // Kiểm tra chính xác tên ID đặt trong UXML
         _resultLabel = RootElement.Q<Label>("ResultLabel");
-        _continueButton = RootElement.Q<Button>("ContinueButton");
+       // _continueButton = RootElement.Q<Button>("ContinueButton");
         _returnButton = RootElement.Q<Button>("ReturnButton");
 
         if (_returnButton != null) _returnButton.clicked += OnReturnButtonClicked;
-        if (_continueButton != null) _continueButton.clicked += OnContinueButtonClicked;
+       // if (_continueButton != null) _continueButton.clicked += OnContinueButtonClicked;
     }
 
     // Tự động chạy khi UIManager gọi Show()
@@ -53,11 +53,11 @@ public class EndGamePanel : UIPanel
         }
     }
 
-    private void OnContinueButtonClicked()
-    {
-        Debug.Log("[EndGamePanel] Bấm Continue -> Logic tải màn tiếp theo xử lý tại đây.");
-        // TODO: Viết code gọi sang LevelManager hoặc GameMenuManager để Load ván mới
-    }
+    //private void OnContinueButtonClicked()
+    //{
+    //    Debug.Log("[EndGamePanel] Bấm Continue -> Logic tải màn tiếp theo xử lý tại đây.");
+    //    // TODO: Viết code gọi sang LevelManager hoặc GameMenuManager để Load ván mới
+    //}
 
     private void OnReturnButtonClicked()
     {

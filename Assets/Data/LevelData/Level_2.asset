@@ -14,11 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   levelName: Level_2
   sceneToLoad: Rung_xanh
-  maxPlacementCapacity: 5
+  maxPlacementCapacity: 11
   enemyTroopsSetup:
   - enemyData: {fileID: 11400000, guid: 714bcbf9d28617b4f8491fb6a0d3b9ab, type: 2}
-    gridCoordinate: {x: 1, y: 1}
+    gridCoordinate: {x: 2, y: 1}
   - enemyData: {fileID: 11400000, guid: 714bcbf9d28617b4f8491fb6a0d3b9ab, type: 2}
-    gridCoordinate: {x: 1, y: 2}
+    gridCoordinate: {x: 2, y: 2}
+  - enemyData: {fileID: 11400000, guid: 714bcbf9d28617b4f8491fb6a0d3b9ab, type: 2}
+    gridCoordinate: {x: 2, y: 3}
+  - enemyData: {fileID: 11400000, guid: 714bcbf9d28617b4f8491fb6a0d3b9ab, type: 2}
+    gridCoordinate: {x: 2, y: 4}
+  - enemyData: {fileID: 11400000, guid: 714bcbf9d28617b4f8491fb6a0d3b9ab, type: 2}
+    gridCoordinate: {x: 2, y: 5}
+  - enemyData: {fileID: 11400000, guid: 714bcbf9d28617b4f8491fb6a0d3b9ab, type: 2}
+    gridCoordinate: {x: 3, y: 0}
+  - enemyData: {fileID: 11400000, guid: 714bcbf9d28617b4f8491fb6a0d3b9ab, type: 2}
+    gridCoordinate: {x: 3, y: 6}
   - enemyData: {fileID: 11400000, guid: 00405010e6fee63428bced72d92fe9b3, type: 2}
-    gridCoordinate: {x: 1, y: 3}
+    gridCoordinate: {x: 4, y: 1}
+  - enemyData: {fileID: 11400000, guid: 00405010e6fee63428bced72d92fe9b3, type: 2}
+    gridCoordinate: {x: 4, y: 2}
+  - enemyData: {fileID: 11400000, guid: 00405010e6fee63428bced72d92fe9b3, type: 2}
+    gridCoordinate: {x: 4, y: 3}
+  - enemyData: {fileID: 11400000, guid: 00405010e6fee63428bced72d92fe9b3, type: 2}
+    gridCoordinate: {x: 4, y: 4}
+  - enemyData: {fileID: 11400000, guid: 00405010e6fee63428bced72d92fe9b3, type: 2}
+    gridCoordinate: {x: 4, y: 5}

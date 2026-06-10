@@ -10,7 +10,7 @@
             </ui:VisualElement>
 
             <ui:VisualElement class="buttons-section">
-                <ui:Button name="ContinueButton" text="CONTINUE" class="btn-primary" />
+                <!-- <ui:Button name="ContinueButton" text="CONTINUE" class="btn-primary" /> -->
                 <ui:Button name="ReturnButton" text="MAIN MENU" class="btn-secondary" />
             </ui:VisualElement>
 

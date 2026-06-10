@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b594d878bb878649be9a4705742fc2d, type: 3}
   m_Name: Chapter_2
   m_EditorClassIdentifier: Assembly-CSharp::ChapterData
-  chapterName: "T\xEAn V\xF9ng \u0110\u1EA5t"
+  chapterName: Desert
   chapterDescription: "M\xF4 t\u1EA3 ng\u1EAFn..."
-  chapterIcon: {fileID: 21300000, guid: 9477d90257e0380478468c81f3298df7, type: 3}
+  chapterIcon: {fileID: 21300000, guid: 9d5284f0f6e28824bb98975112470590, type: 3}
   rewardName: ARCHER
   rewardIcon: {fileID: -4123184172539579323, guid: 896959b8debc17e4cb309ca1208cf053, type: 3}
   levels:
   - {fileID: 11400000, guid: 1b8e2d5622d6dba44950f50458323fa1, type: 2}
+  - {fileID: 11400000, guid: 97d67cd6a74a1c24a8bb2f1ab1ab25a9, type: 2}
